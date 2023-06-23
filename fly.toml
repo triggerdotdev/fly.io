@@ -1,6 +1,7 @@
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
+
 app = "trigger-v2-fly-demo"
 primary_region = "mia"
 
@@ -16,10 +17,10 @@ primary_region = "mia"
 
 [checks]
   [checks.http_health_check]
-    grace_period = "30s"
+    port = 3000
+    type = "http"
     interval = "15s"
+    timeout = "10s"
+    grace_period = "30s"
     method = "get"
     path = "/healthcheck"
-    port = 3000
-    timeout = "10s"
-    type = "http"
