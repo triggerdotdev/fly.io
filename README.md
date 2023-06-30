@@ -106,34 +106,22 @@ Once deployed, you should be able to open `https://<your fly app name>.fly.dev/`
 
 Next you can easily bootstrap your Next.js project to use your self-hosted instance of Trigger.dev.
 
-First, `cd` into your Next.js project and start the dev server using `npm run dev`, which should run the server at `localhost:3000`.
-
-Next, you'll need to use a reverse tunneling service to expose your local Next.js dev server to the internet, to allow your self-hosted Trigger.dev instance on Fly.io to be able to make HTTP requests to your local machine. We recommend using [ngrok](https://ngrok.com/):
-
-1. Install ngrok:
+First, `cd` into your Next.js project, then run the `@trigger.dev/cli init` command to initialize your Next.js project:
 
 ```sh
-brew install ngrok/ngrok/ngrok
-```
-
-2. Create an http tunnel at port 3000:
-
-```sh
-ngrok http 3000
-```
-
-3. Grab your forwarding address in the ngrok output:
-
-![ngrok](./assets/ngrok-http-tunnel.png)
-
-4. Run the `@trigger.dev/init` CLI to initialize your Next.js project:
-
-Open yet another terminal window and `cd` back into your Next.js project, and then run the `@trigger.dev/init` CLI tool using `npx` (if you are using pnpm, use `pnpm dlx @trigger.dev/init`, and with yarn you can just use `yarn @trigger.dev/init`)
-
-```sh
-npx @trigger.dev/init --trigger-url "https://<your fly app name>.fly.dev" --endpoint-url "https://<subdomain>.ngrok-free.app"
+npx @trigger.dev/cli@latest init -t "https://<your fly app name>.fly.dev"
 ```
 
 When it asks for your development API key, head over to your self-hosted Trigger.dev dashboard and select the initial project you created when signing up, and head to the `Environments & API Keys` page to copy your `dev` API key:
 
 ![api key](./assets/api-key.png)
+
+### Start your dev server
+
+Run your Next.js project dev server with `npm run dev` and then in a new terminal window you will need to run the `@trigger.dev/cli dev` command to connect to your Trigger.dev instance and allow it to tunnel to your local Next.js server:
+
+```sh
+npx @trigger.dev/cli@latest dev
+```
+
+At this point you should be able to navigate to your Trigger.dev dashboard and view your registered jobs
