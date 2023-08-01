@@ -59,9 +59,9 @@ And then you can copy out the AUTH_GITHUB_CLIENT_ID and AUTH_GITHUB_CLIENT_SECRE
 
 We use [Resend.com](https://resend.com) for email sending (including the magic-link signup/login system). They have a generous free tier of 100 emails a day that should be sufficient. Signup for Resend.com and enter the required environment vars below
 
-#### MAGIC_LINK_SECRET and SESSION_SECRET (required)
+#### MAGIC_LINK_SECRET, SESSION_SECRET and ENCRYPTION_KEY (required)
 
-Both of these secrets should be generated random strings, which you can easily generate (and copy into your pasteboard) with the following command:
+All of these secrets should be generated 16 byte random strings, which you can easily generate (and copy into your pasteboard) with the following command:
 
 ```sh
 openssl rand -hex 16 | pbcopy
@@ -77,6 +77,7 @@ Call the `fly secrets set` command to stage the secrets to be used on first depl
 
 ```sh
 fly secrets set \
+  ENCRYPTION_KEY=<random string> \
   MAGIC_LINK_SECRET=<random string> \
   SESSION_SECRET=<random string> \
   LOGIN_ORIGIN="https://<fly app name>.fly.dev" \

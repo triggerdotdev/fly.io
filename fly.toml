@@ -9,7 +9,7 @@ primary_region = "mia"
   image = "ghcr.io/triggerdotdev/trigger.dev:latest"
 
 [http_service]
-  internal_port = 3000
+  internal_port = 3030
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
@@ -17,7 +17,7 @@ primary_region = "mia"
 
 [checks]
   [checks.http_health_check]
-    port = 3000
+    port = 3030
     type = "http"
     interval = "15s"
     timeout = "10s"
