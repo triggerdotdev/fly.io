@@ -67,6 +67,14 @@ All of these secrets should be generated 16 byte random strings, which you can e
 openssl rand -hex 16 | pbcopy
 ```
 
+#### DIRECT_URL (required)
+
+This needs to be set to the database connection string that was printed to your terminal after the creation step above:
+
+```sh
+Connection string: postgres://postgres:<PASSWORD>@<fly db name>.flycast:5432
+```
+
 #### LOGIN_ORIGIN and APP_ORIGIN (required)
 
 Both of these secrets should be set to the base URL of your fly application. For example `https://trigger-v2-fly-demo.fly.dev`
@@ -82,6 +90,7 @@ fly secrets set \
   SESSION_SECRET=<random string> \
   LOGIN_ORIGIN="https://<fly app name>.fly.dev" \
   APP_ORIGIN="https://<fly app name>.fly.dev" \
+  DIRECT_URL="postgres://postgres:<PASSWORD>@<fly db name>.flycast:5432" \
   FROM_EMAIL="Acme Inc. <hello@yourdomain.com>" \
   REPLY_TO_EMAIL="Acme Inc. <reply@yourdomain.com>" \
   RESEND_API_KEY=<your API Key> \
