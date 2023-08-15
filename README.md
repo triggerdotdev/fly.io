@@ -55,9 +55,9 @@ And then you can copy out the AUTH_GITHUB_CLIENT_ID and AUTH_GITHUB_CLIENT_SECRE
 
 ![github copy secrets](assets/github-secrets.png)
 
-#### RESEND_API_KEY and FROM_EMAIL, REPLY_TO_EMAIL (required)
+#### FROM_EMAIL,REPLY_TO_EMAIL, SMTP_HOST, SMTP_PORT, SMTP_USER and SMTP_PASSWORD (required)
 
-We use [Resend.com](https://resend.com) for email sending (including the magic-link signup/login system). They have a generous free tier of 100 emails a day that should be sufficient. Signup for Resend.com and enter the required environment vars below
+We use SMTP for email sending (including the magic-link signup/login system).
 
 #### MAGIC_LINK_SECRET, SESSION_SECRET and ENCRYPTION_KEY (required)
 
@@ -79,7 +79,7 @@ Connection string: postgres://postgres:<PASSWORD>@<fly db name>.flycast:5432
 
 Both of these secrets should be set to the base URL of your fly application. For example `https://trigger-v2-fly-demo.fly.dev`
 
-### Set the secrets
+## Set the secrets
 
 Call the `fly secrets set` command to stage the secrets to be used on first deploy:
 
@@ -90,10 +90,12 @@ fly secrets set \
   SESSION_SECRET=<random string> \
   LOGIN_ORIGIN="https://<fly app name>.fly.dev" \
   APP_ORIGIN="https://<fly app name>.fly.dev" \
-  DIRECT_URL="postgres://postgres:<PASSWORD>@<fly db name>.flycast:5432" \
   FROM_EMAIL="Acme Inc. <hello@yourdomain.com>" \
   REPLY_TO_EMAIL="Acme Inc. <reply@yourdomain.com>" \
-  RESEND_API_KEY=<your API Key> \
+  SMTP_HOST= < your SMTP host > \
+  SMTP_PORT= < your SMTP port > \
+  SMTP_USER=  < your SMTP user > \
+  SMTP_PASSWORD= < your SMTP password > \
   AUTH_GITHUB_CLIENT_ID=<your GitHub OAuth Client ID> \
   AUTH_GITHUB_CLIENT_SECRET=<your GitHUb OAuth Client Secret>
 
