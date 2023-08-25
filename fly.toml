@@ -8,6 +8,9 @@ primary_region = "mia"
 [build]
   image = "ghcr.io/triggerdotdev/trigger.dev:latest"
 
+[env]
+  REMIX_APP_PORT = "3030"
+
 [http_service]
   internal_port = 3030
   force_https = true
